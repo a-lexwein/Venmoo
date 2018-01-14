@@ -19,6 +19,7 @@ class Form extends React.Component {
     this.amountChangeHandler = this.amountChangeHandler.bind(this);
     this.messageChangeHandler = this.messageChangeHandler.bind(this);
     this.formSubmitHandler = this.formSubmitHandler.bind(this);
+    this.updateState = props.updateState;
   }
 
 
@@ -53,22 +54,29 @@ class Form extends React.Component {
 
   formSubmitHandler(event) {
     event.preventDefault();
+    // this.setState({
+    //   otherUser: '',
+    //   amount: '',
+    //   message: '',
+    // });
+
     var time = new Date();
     var url = this.state.isPayment ? '/payment' : '/request';
-    axios.post(url, {
-      senderObj: this.props.user,
-      username: this.state.otherUser,
-      amount: this.state.amount,
-      isPayment: this.state.isPayment,
-      message: this.state.message
-    })
-
-    .then((response) => {
-      console.log(response)
-    })
-    .catch((error) => {
-      throw error;
-    });
+    axios
+      .post(url, {
+        senderObj: this.props.user,
+        username: this.state.otherUser,
+        amount: this.state.amount,
+        isPayment: this.state.isPayment,
+        message: this.state.message
+      })
+      .then((response) => {
+        this.updateState();
+        console.log(response)
+      })
+      .catch((error) => {
+        throw error;
+      });
   }
 
   render() {

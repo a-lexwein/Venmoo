@@ -28,6 +28,7 @@ class ProfilePage extends React.Component {
         <Form
           user={this.props.user}
           renderUser={this.props.renderUser}
+          updateState={this.props.updateState}
         />
         <div> Transaction History </div>
         <div className="scrollingTransactions">
