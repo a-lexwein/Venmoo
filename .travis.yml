@@ -1,5 +1,7 @@
 language: node_js
 node_js:
-  - 8.4.0
-
+- 8.4.0
 script: npm start & node ./server/index.js & npm run test
+env:
+  global:
+  - DATABASE_URL=postgres://kqwlgctbvokcfp:f00644d10edb43591374e0a2c01635edd2719fd984aa54b413cd6405ac15e4a6@ec2-54-83-59-144.compute-1.amazonaws.com:5432/dedjj9hcdfiie5
